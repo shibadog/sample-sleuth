@@ -34,3 +34,7 @@ Bean登録された、RestTemplate/WebClientを使用して外部通信をした
 
 `@NewSpan` というアノテーションを付与することで任意のタイミングでspanを切ることができる。  
 これ以外にも、Spring Bootの組み込み済みのタイミングで発行される。
+
+### システムの構造
+
+![](./dev/img/system-overview.drawio.png)
