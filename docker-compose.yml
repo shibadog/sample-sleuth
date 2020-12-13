@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  app-front:
+    image: sample-sleuth-front:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    links:
+      - app-back
+      - zipkin
+
+  app-back:
+    image: sample-sleuth-back:0.0.1-SNAPSHOT
+    expose:
+      - 8080
+    links:
+      - zipkin
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    ports:
+      - "9411:9411"

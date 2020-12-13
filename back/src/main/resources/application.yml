@@ -1,0 +1,13 @@
+
+spring:
+    # spring.zipkin.service.nameがあるが、もし指定がない場合は、この値が使用される。
+    application.name: "@project.name@"
+
+    sleuth:
+        # サンプル数 1.0が最大で必ずサンプルをとる。
+        # 割合で指定する。spanの発行元の情報を引き継ぐ。
+        sampler.probability: 1.0
+        enabled: true
+    zipkin:
+        # zipkinサーバのエンドポイント。ルートを指定。
+        base-url: http://zipkin:9411
