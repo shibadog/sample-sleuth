@@ -36,7 +36,8 @@ PS> curl http://localhost:8080/backend
 2020-12-14 12:03:54.987  INFO [sample-sleuth-back,715e7779a0ea38e8,715e7779a0ea38e8] 4480 --- [nio-8080-exec-1] j.g.s.s.b.SampleSleuthBackApplication    : loglog
 ```
 
-出力されたTraceID,SpanIDは上位からのアクセスと紐づいた同一の値が設定される。
+出力されたTraceIDは上位からのアクセスと紐づいた同一の値が設定される。  
+SpanIDは、Spanごとに発行される値。上位のSpanが存在しない場合は、その値がTraceIDとなる。
 
 ## 仕組み
 
