@@ -1,6 +1,7 @@
 package jp.github.shibadog.samplesleuth.front;
 
 import java.util.concurrent.TimeUnit;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.sleuth.annotation.NewSpan;
@@ -29,16 +30,19 @@ public class SampleSleuthFrontApplication {
 	public static class DemoController {
 		private final RestOperations restOperations;
 		private final DemoService service;
+		private final String url;
 
-		public DemoController(RestOperations restOperations, DemoService service) {
+		public DemoController(RestOperations restOperations, DemoService service, @Value("${app.backend.base-url}") String baseUrl) {
 			this.restOperations = restOperations;
 			this.service = service;
+			this.url = baseUrl;
 		}
 
 		@RequestMapping("/test")
 		public String test() {
 			service.something();
-			return restOperations.getForObject("http://app-back:8080/backend", String.class);
+			log.info(url + "/backend");
+			return restOperations.getForObject(url + "/backend", String.class);
 		}
 	}
 

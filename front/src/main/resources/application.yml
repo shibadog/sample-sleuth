@@ -1,4 +1,25 @@
 
+# Web Server
+server:
+#   port: 8080
+#   tomcat:
+#     mbeanregistry.enabled: true
+  shutdown: graceful
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health.probes.enabled: true
+  metrics.distribution:
+    percentiles-histogram:
+      '[http.server.requests]': true
+    slo:
+      '[http.server.requests]': 50ms, 100ms, 200ms, 400ms
+
 spring:
     # spring.zipkin.service.nameがあるが、もし指定がない場合は、この値が使用される。
     application.name: "@project.name@"
@@ -11,3 +32,7 @@ spring:
     zipkin:
         # zipkinサーバのエンドポイント。ルートを指定。
         base-url: http://zipkin:9411
+
+app:
+    backend:
+        base-url: http://app-back:8080
